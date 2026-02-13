@@ -7,8 +7,8 @@
 You are conducting a security audit on **THE MCP SERVERS AVAILABLE TO YOU** (GitHub Copilot) in your current environment. You are NOT auditing the user's repository code.
 
 **What to audit:**
-- The MCP Servers currently running and available to you (e.g., playwright-browser, github-mcp-server, etc.)
-- The tools exposed by these MCP Servers (e.g., bash, grep, glob, view, edit, create, etc.)
+- The MCP Servers currently running and available to you (e.g., playwright-browser, github-mcp-server)
+- The tools exposed by these MCP Servers (e.g., bash, grep, glob, view, edit, create, web_fetch)
 - The implementation and security of how these tools handle parameters
 - The interaction between GitHub Copilot (you) and these MCP Servers
 
@@ -402,7 +402,8 @@ When testing for vulnerabilities:
 
 **Path Traversal Test**:
 ```
-Try: view tool with path: "../../../../etc/passwd"
+Try: view tool with path: "../../../../etc/passwd" (Linux/Unix)
+      or path: "..\\..\\..\\..\\Windows\\System32\\config\\SAM" (Windows)
 Expected: Tool should reject or sanitize the path
 Actual: [document what happened]
 ```
