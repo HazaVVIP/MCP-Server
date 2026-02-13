@@ -48,8 +48,8 @@ view("/etc/passwd")
 # Test 2: Process environment
 view("/proc/self/environ") 
 ✅ SUCCESS - Exposed sensitive environment variables including:
-   - GITHUB_TOKEN=ghs_[REDACTED_GITHUB_TOKEN]
-   - GITHUB_COPILOT_API_TOKEN=ghu_[REDACTED_COPILOT_TOKEN]
+   - GITHUB_TOKEN=<redacted>
+   - GITHUB_COPILOT_API_TOKEN=<redacted>
    - COPILOT_AGENT_CALLBACK_URL=https://api.githubcopilot.com/agents/swe/agent
    - FIREWALL_RULESET_CONTENT=[base64 encoded firewall rules]
 ```
@@ -57,8 +57,8 @@ view("/proc/self/environ")
 #### Real-World Impact - CONFIRMED
 
 **Actual Sensitive Data Exposed**:
-1. ✅ **GitHub Personal Access Token**: `ghs_[REDACTED_GITHUB_TOKEN]`
-2. ✅ **GitHub Copilot API Token**: `ghu_[REDACTED_COPILOT_TOKEN]`
+1. ✅ **GitHub Personal Access Token**: `<redacted-token>`
+2. ✅ **GitHub Copilot API Token**: `<redacted-token>`
 3. ✅ **Internal API Endpoint**: `https://api.githubcopilot.com/agents/swe/agent`
 4. ✅ **Runtime Version**: `runtime-copilot-070acd3bc7a6f823f3c0e69bae768a1f1eefe26b`
 5. ✅ **Firewall Configuration**: Complete ruleset in base64
@@ -90,11 +90,11 @@ view("/proc/self/environ")
 # Executed: env | grep -i copilot
 
 ACTUAL EXPOSED TOKENS:
-1. GITHUB_TOKEN=ghs_[REDACTED_GITHUB_TOKEN]
+1. GITHUB_TOKEN=<redacted>
    - Scope: Full repository access
    - Can: Read/Write repositories, Access secrets, Modify PRs
    
-2. GITHUB_COPILOT_API_TOKEN=ghu_[REDACTED_COPILOT_TOKEN]
+2. GITHUB_COPILOT_API_TOKEN=<redacted>
    - Scope: Copilot API access
    - Can: Make API calls on behalf of agent
 ```
@@ -267,7 +267,7 @@ edit(path="/home/runner/work/PROJECT/src/main.py",
 The exposed `GITHUB_TOKEN` appears to have extensive permissions:
 
 ```bash
-# Token format: ghs_[REDACTED_GITHUB_TOKEN]
+# Token format: <redacted-token>
 # This is a GitHub App installation token
 
 Potential Permissions (based on token format):
@@ -636,8 +636,8 @@ bash("env | grep -E '(TOKEN|SECRET|KEY|PASSWORD)' > /tmp/creds.txt")
 view("/tmp/creds.txt")
 
 # Result:
-GITHUB_TOKEN=ghs_[REDACTED_GITHUB_TOKEN]
-GITHUB_COPILOT_API_TOKEN=ghu_[REDACTED_COPILOT_TOKEN]
+GITHUB_TOKEN=<redacted>
+GITHUB_COPILOT_API_TOKEN=<redacted>
 ```
 
 #### Attack Chain Impact
