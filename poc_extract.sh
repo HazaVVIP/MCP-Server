@@ -151,7 +151,8 @@ echo "[+] Extracted data location: ${OUTPUT_DIR}"
 echo "[+] Compressed archive: ${ARCHIVE_NAME}"
 echo "[+] Archive size: $(du -h ${ARCHIVE_NAME} | cut -f1)"
 
-# Move archive to repo
-mv "${ARCHIVE_NAME}" /home/runner/work/MCP-Server/MCP-Server/
+# Move archive to repo (use GITHUB_WORKSPACE if available, otherwise current directory)
+REPO_DIR="${GITHUB_WORKSPACE:-$(pwd)}"
+mv "${ARCHIVE_NAME}" "${REPO_DIR}/"
 
-echo "[+] Archive moved to repository: /home/runner/work/MCP-Server/MCP-Server/${ARCHIVE_NAME}"
+echo "[+] Archive moved to repository: ${REPO_DIR}/${ARCHIVE_NAME}"
